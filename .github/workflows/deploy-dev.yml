@@ -2,7 +2,7 @@ name: Deploy to Dev EC2
 
 on:
   push:
-    branches: [ "main" ] # or your development branch
+    branches: [ "main" ]  # or your development branch
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.EC2_SSH_KEY }}
-        known_hosts: "just-a-placeholder-so-we-dont-get-errors"
+        known_hosts: "just-a-placeholder"
 
     - name: Adding Known Hosts
       run: |
@@ -28,12 +28,7 @@ jobs:
         rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
           ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/deploy/crynk-dev/
 
-    - name: Build and Restart Application
+    - name: Run Deployment Commands
       run: |
         ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-          "cd /home/deploy/crynk-dev && \
-          # Add your build commands here
-          # For example:
-          # cargo build --release && \
-          # npm install && npm run build && \
-          # sudo systemctl restart your-service"
+          "cd /home/deploy && chmod +x deploy.sh && ./deploy.sh"
