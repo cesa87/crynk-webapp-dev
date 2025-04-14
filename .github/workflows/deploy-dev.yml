@@ -21,33 +21,36 @@ jobs:
     - name: Adding Known Hosts
       run: |
         mkdir -p ~/.ssh
+        chmod 700 ~/.ssh
         ssh-keyscan ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        chmod 600 ~/.ssh/known_hosts
 
     # Frontend deployment
     - name: Deploy Frontend
       run: |
-        rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
           ./frontend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-frontend/
 
     # Backend deployment  
     - name: Deploy Backend
       run: |
-        rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
           ./backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-backend/
 
     # Rebuild and restart services
     - name: Rebuild and Restart
       run: |
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
         # Frontend
         cd /home/ubuntu/crynk-frontend
-        sudo systemctl stop crynk-frontend
+        sudo systemctl stop crynk-frontend || true
+        npm install
         npm run build
         sudo systemctl start crynk-frontend
         
         # Backend
         cd /home/ubuntu/crynk-backend
-        sudo systemctl stop crynk-backend
+        sudo systemctl stop crynk-backend || true
         cargo build --release
         sudo systemctl start crynk-backend
         EOF
