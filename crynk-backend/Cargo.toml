@@ -1,0 +1,18 @@
+[package]
+name = "crynk-backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+actix-web = "4.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sqlx = { version = "0.8.1", features = ["mysql", "runtime-tokio-native-tls"] }
+dotenv = "0.15"
+bcrypt = "0.15"
+actix-cors = "0.7"
+ethers = "2.0"
+solana-client = "2.2.3"
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1.0", features = ["full"] }
+chrono = "0.4"
