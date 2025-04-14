@@ -476,7 +476,8 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(
                 Cors::default()
-                    .allowed_origin(http://localhost:8080)
+                    .allowed_origin("http://localhost:3000")
+		    .allowed_origin("http://13.48.24.11")
                     .allowed_origin("https://crynk.org.uk") // Explicitly allow your frontend origin
                     .allowed_origin("https://www.crynk.org.uk")
                     .allowed_methods(vec!["GET", "POST", "OPTIONS"]) // Include OPTIONS for preflight
