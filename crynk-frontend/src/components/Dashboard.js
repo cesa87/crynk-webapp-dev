@@ -51,7 +51,7 @@ function Dashboard() {
 
         const fetchEthPrice = async () => {
             try {
-                const response = await fetch('https://crynk.org.uk/api/eth-price');
+                const response = await fetch('http://localhost:8080/api/eth-price');
                 const data = await response.json();
                 const price = data.price || 0;
                 setEthPrice(`$${price.toFixed(2)} USD`);
@@ -64,7 +64,7 @@ function Dashboard() {
 
         const fetchEthMetrics = async () => {
             try {
-                const response = await fetch('https://crynk.org.uk/api/eth-metrics');
+                const response = await fetch('http://localhost:8080/api/eth-metrics');
                 const data = await response.json();
                 const rsi = data.rsi || 0;
                 const vol = data.volatility || 0;
@@ -78,7 +78,7 @@ function Dashboard() {
 
         const fetchGasFees = async () => {
             try {
-                const response = await fetch('https://crynk.org.uk/api/gas-fees');
+                const response = await fetch('http://localhost:8080/api/gas-fees');
                 const data = await response.json();
                 const fees = data.fees || 0;
                 setGasFees(`$${fees.toFixed(2)} USD`);
@@ -99,7 +99,7 @@ function Dashboard() {
 
         const fetchMarketSentiment = async () => {
             try {
-                const response = await fetch('https://crynk.org.uk/api/market-sentiment');
+                const response = await fetch('http://localhost:8080/api/market-sentiment');
                 const data = await response.json();
                 const sentiment = data.sentiment || "Unknown";
                 setMarketSentiment(sentiment);
@@ -110,7 +110,7 @@ function Dashboard() {
 
         const fetchTransactionHistory = async () => {
             try {
-                const response = await fetch(`https://crynk.org.uk/api/transactions?wallet_address=${walletAddress}`);
+                const response = await fetch(`http://localhost:8080/api/transactions?wallet_address=${walletAddress}`);
                 const data = await response.json();
                 const txs = data.transactions || [];
                 setTransactions(txs);
