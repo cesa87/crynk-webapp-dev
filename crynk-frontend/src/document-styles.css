@@ -1,0 +1,103 @@
+/* ===== MERCHANT ONBOARDING PAGE STYLES ===== */
+.merchant-onboarding-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #121122;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.merchant-section {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 40px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Responsive images for onboarding */
+.merchant-section img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* ===== MENU STYLES (For Login Page) ===== */
+.menu-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    transition: all 0.2s ease;
+    filter: brightness(0) invert(1); /* Makes PNG white */
+}
+
+.menu-button:hover .menu-icon {
+    filter: brightness(0) invert(0.7) sepia(1) saturate(5) hue-rotate(300deg); /* Pink color */
+    transform: scale(1.1);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: #1E1E2F;
+    border-radius: 8px;
+    padding: 10px 0;
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    border: 1px solid rgba(240, 0, 140, 0.3);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    color: #F7F6EA;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background: rgba(240, 0, 140, 0.1);
+    color: #F0008C;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .merchant-section {
+        margin-bottom: 30px;
+    }
+    
+    .menu-container {
+        top: 15px;
+        right: 15px;
+    }
+}

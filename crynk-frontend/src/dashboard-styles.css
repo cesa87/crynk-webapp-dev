@@ -1,0 +1,320 @@
+/* ===== DASHBOARD-SPECIFIC STYLES ===== */
+
+.dashboard-page {
+    background-color: #121122;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 40px 20px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.dashboard-title {
+    color: #F7F6EA;
+    font-size: 36px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #F0008C;
+}
+
+/* Wallet Display Container */
+.wallet-display {
+    display: flex;                /* Uses flexbox layout for child elements */
+    align-items: center;          /* Vertically centers items in the container */
+    gap: 15px;                   /* Space between logo and address text */
+    margin-top: 10px;            /* Space above the wallet display */
+    background: rgba(30, 30, 47, 0.7);  /* Semi-transparent dark background */
+    padding: 10px 15px;          /* Increased padding for better spacing */
+    border-radius: 50px;         /* Fully rounded corners */
+    border: 1px solid rgba(240, 0, 140, 0.3); /* Pink border with transparency */
+    max-width: fit-content;      /* Container only as wide as its content */
+}
+
+/* Wallet Logo Styles */
+.wallet-logo {
+    width: 50px;                 /* Reasonable logo width */
+    height: 50px;                /* Matching height for square aspect ratio */
+    object-fit: contain;         /* Ensures logo scales properly within space */
+    flex-shrink: 0;             /* Prevents logo from shrinking if space is tight */
+}
+
+.wallet-address {
+    font-size: 15px;
+    font-family: monospace;
+    color: #F7F6EA;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Card Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+.dashboard-card {
+    background-color: #1E1E2F;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    color: #F7F6EA;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(240, 0, 140, 0.1);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(240, 0, 140, 0.2);
+}
+
+/* Card Variants */
+.summary-card {
+    background: linear-gradient(135deg, #1E1E2F 0%, #2A2A3F 100%);
+}
+
+.market-card {
+    background: linear-gradient(135deg, #1E1E2F 0%, #2A1E3F 100%);
+}
+
+.transactions-card {
+    background: linear-gradient(135deg, #1E1E2F 0%, #1E2A3F 100%);
+}
+
+/* Card Interiors */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(240, 0, 140, 0.2);
+}
+
+.card-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    color: #F7F6EA;
+}
+
+.card-icon {
+    font-size: 24px;
+    color: #F0008C;
+}
+
+.card-content {
+    flex: 1;
+}
+
+/* Metrics */
+.metric-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.metric-label {
+    color: #B8B8D1;
+    font-size: 14px;
+}
+
+.metric-value {
+    color: #F7F6EA;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* Sentiment */
+.sentiment-indicator {
+    margin-top: 20px;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.sentiment-value {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.sentiment-value.bullish {
+    background: rgba(0, 200, 83, 0.2);
+    color: #00C853;
+}
+
+.sentiment-value.bearish {
+    background: rgba(255, 82, 82, 0.2);
+    color: #FF5252;
+}
+
+.sentiment-value.neutral {
+    background: rgba(255, 171, 0, 0.2);
+    color: #FFAB00;
+}
+
+/* Transactions */
+.transactions-table {
+    width: 100%;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(240, 0, 140, 0.2);
+    font-size: 12px;
+    color: #B8B8D1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    font-size: 13px;
+    align-items: center;
+}
+
+.table-row span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-align: center;
+}
+
+.status.success {
+    background: rgba(0, 200, 83, 0.2);
+    color: #00C853;
+}
+
+.status.failed {
+    background: rgba(255, 82, 82, 0.2);
+    color: #FF5252;
+}
+
+.status.pending {
+    background: rgba(255, 171, 0, 0.2);
+    color: #FFAB00;
+}
+
+.no-transactions {
+    text-align: center;
+    padding: 30px 0;
+    color: #B8B8D1;
+    font-style: italic;
+}
+
+/* Dashboard-specific Animations */
+@keyframes dashboardFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dashboard-card {
+    animation: dashboardFadeIn 0.5s ease-out;
+}
+
+/* Responsive - Dashboard Only */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metric-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-header, .table-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-title {
+        font-size: 28px;
+    }
+    
+    .dashboard-container {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wallet-display {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .wallet-address {
+        max-width: 100%;
+    }
+    
+    .dashboard-card {
+        padding: 20px 15px;
+    }
+    
+    .table-header, .table-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .table-row {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(240, 0, 140, 0.1);
+    }
+}
