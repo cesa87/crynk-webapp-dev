@@ -16,16 +16,14 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.EC2_SSH_KEY }}
-        known_hosts: "just-a-placeholder"
+        known_hosts: "optional"
 
     - name: Adding Known Hosts
       run: |
         mkdir -p ~/.ssh
-        chmod 700 ~/.ssh
         ssh-keyscan ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
-        chmod 600 ~/.ssh/known_hosts
 
-    # Frontend deployment
+    # Frontend deployment (FIXED: No duplicate rsync)
     - name: Deploy Frontend
       run: |
         rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
@@ -37,20 +35,7 @@ jobs:
         rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
           ./backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-backend/
 
-    # Rebuild and restart services
-    - name: Rebuild and Restart
+    # Restart services
+    - name: Restart Services
       run: |
-        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
-        # Frontend
-        cd /home/ubuntu/crynk-frontend
-        sudo systemctl stop crynk-frontend || true
-        npm install
-        npm run build
-        sudo systemctl start crynk-frontend
-        
-        # Backend
-        cd /home/ubuntu/crynk-backend
-        sudo systemctl stop crynk-backend || true
-        cargo build --release
-        sudo systemctl start crynk-backend
-        EOF
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "sudo systemctl restart crynk-frontend && sudo systemctl restart crynk-backend"
