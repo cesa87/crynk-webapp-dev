@@ -475,7 +475,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .wrap(
-                Cors::default()
+                Cors::permissive()
                     .allowed_origin("http://localhost:3000")
 		    .allowed_origin("http://13.48.24.11")
                     .allowed_origin("https://crynk.org.uk") // Explicitly allow your frontend origin
