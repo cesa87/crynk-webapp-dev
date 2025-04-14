@@ -15,7 +15,7 @@ function RegisterPage() {
     event.preventDefault(); // Prevent form reload
 
     try {
-      const response = await fetch("http://localhost:8080/api/register", {
+      const response = await fetch("http://13.48.24.11:8080/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ first_name, last_name, email, mobile, username, password }),

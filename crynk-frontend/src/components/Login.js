@@ -45,7 +45,7 @@ const handleLogin = async (event) => {
 event.preventDefault();
 try {
 console.log("Sending login request...");
-const response = await fetch("http://localhost:8080/api/login", {
+const response = await fetch("http://13.48.24.11:8080/api/login", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({ username, password }),
@@ -76,7 +76,7 @@ const handleSignup = async (event) => {
 event.preventDefault();
 try {
 console.log("Sending signup request...");
-const response = await fetch("http://localhost:8080/api/register", {
+const response = await fetch("http://13.48.24.11:8080/api/register", {
 method: "POST",
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({ first_name, last_name, email, mobile, username, password }),
