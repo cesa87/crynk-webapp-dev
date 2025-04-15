@@ -1,12 +1,12 @@
 /* Wallet Page Specific Styles */
 .wallet-container {
-    display: contain;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
     background: url('./assets/wallet-background.png') no-repeat center center fixed;
-    background-size: cover;
+    background-size: contain;
     padding: 20px;
     box-sizing: border-box;
     position: relative;
