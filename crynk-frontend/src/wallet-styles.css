@@ -1,6 +1,6 @@
 /* Wallet Page Specific Styles */
 .wallet-container {
-    display: flex;
+    display: contain;
     flex-direction: column;
     align-items: center;
     justify-content: center;
