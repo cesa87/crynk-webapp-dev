@@ -64,7 +64,7 @@ function Dashboard() {
 
         const fetchEthMetrics = async () => {
             try {
-                const response = await fetch('http:13.48.24.11:8080/api/eth-metrics');
+                const response = await fetch('http://13.48.24.11:8080/api/eth-metrics');
                 const data = await response.json();
                 const rsi = data.rsi || 0;
                 const vol = data.volatility || 0;
