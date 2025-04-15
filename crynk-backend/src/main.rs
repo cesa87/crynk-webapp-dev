@@ -471,15 +471,13 @@ async fn main() -> std::io::Result<()> {
     let pool = MySqlPool::connect(&database_url).await.expect("Database connection failed");
     println!("Successfully connected to the database");
 
-    println!("Starting HTTP server on 0.0.0.0:8080");
+    println!("Starting HTTP server on 127.0.0.1:8080");
     HttpServer::new(move || {
         App::new()
             .wrap(
                 Cors::permissive()
                     .allowed_origin("http://localhost:3000")
 		    .allowed_origin("http://13.48.24.11")
-                    .allowed_origin("https://crynk.org.uk") // Explicitly allow your frontend origin
-                    .allowed_origin("https://www.crynk.org.uk")
                     .allowed_methods(vec!["GET", "POST", "OPTIONS"]) // Include OPTIONS for preflight
                     .allowed_headers(vec!["Content-Type"])
                     .max_age(3600) // Cache preflight for 1 hour
