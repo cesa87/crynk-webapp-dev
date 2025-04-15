@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: url('../images/wallet-background.png') no-repeat center center fixed;
+    background: url('./assets/wallet-background.png') no-repeat center center fixed;
     background-size: cover;
     padding: 20px;
     box-sizing: border-box;
