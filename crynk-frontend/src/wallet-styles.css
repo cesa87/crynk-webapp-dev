@@ -20,7 +20,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(18, 17, 34, 0.7); /* Dark overlay with transparency */
     z-index: 0;
 }
 
