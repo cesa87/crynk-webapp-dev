@@ -12,11 +12,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Build Frontend
-      run: |
-        cd crynk-frontend
-        npm run build
-
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
       with:
@@ -28,24 +23,12 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
 
-    - name: Clear Old Build on EC2
-      run: |
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
-          ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-          'rm -rf /home/ubuntu/crynk-frontend/build/*'
-
     - name: Deploy Frontend
       run: |
         rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-          ./crynk-frontend/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-frontend/build/
+          ./crynk-frontend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-frontend/
 
     - name: Deploy Backend
       run: |
         rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
           ./crynk-backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-backend/
-
-    - name: Restart Nginx
-      run: |
-        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
-          ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-          'sudo systemctl stop crynk-frontend.servic && sudo systemctl start crynk-frontend.servic'
