@@ -12,22 +12,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20' # Adjust to your Node version (check package.json or local setup)
-
-    - name: Install Frontend Dependencies
-      run: |
-        cd crynk-frontend
-        npm install
-
     - name: Build Frontend
       run: |
         cd crynk-frontend
         npm run build
-      env:
-        REACT_APP_API_URL: http://13.48.24.11:8080
 
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
@@ -46,7 +34,7 @@ jobs:
           ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
           'rm -rf /home/ubuntu/crynk-frontend/build/*'
 
-    - name: Deploy Frontend Build
+    - name: Deploy Frontend
       run: |
         rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
           ./crynk-frontend/build/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-frontend/build/
@@ -60,4 +48,4 @@ jobs:
       run: |
         ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
           ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-          'sudo systemctl stop crynk-frontend.service && sudo systemctl start crynk-frontend.service'
+          'sudo systemctl stop crynk-frontend.servic && sudo systemctl start crynk-frontend.servic'
