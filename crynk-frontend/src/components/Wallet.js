@@ -6,6 +6,10 @@ import phantomLogo from "../Phantom-logo.png";
 import { ethers } from "ethers"; // eslint-disable-line no-unused-vars
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js"; // eslint-disable-line no-unused-vars
 
+// Import the styles
+import "../styles.css";
+
+
 function WalletPage() {
   const [walletAddress, setWalletAddress] = useState(null);
   const navigate = useNavigate();
