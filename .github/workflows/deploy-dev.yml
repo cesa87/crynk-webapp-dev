@@ -32,3 +32,15 @@ jobs:
       run: |
         rsync -avz -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
           ./crynk-backend/ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/home/ubuntu/crynk-backend/
+
+    - name: Clear Old Build on EC2
+      run: |
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
+          ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+          'cd crynk-frontend && rm -rf build'
+
+    - name: Restart CRYNK frontend service
+      run: |
+        ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no \
+          ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
+          'sudo systemctl stop crynk-frontend.service && sudo systemctl start crynk-frontend.service'
