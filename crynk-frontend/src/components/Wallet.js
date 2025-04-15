@@ -7,8 +7,7 @@ import { ethers } from "ethers"; // eslint-disable-line no-unused-vars
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js"; // eslint-disable-line no-unused-vars
 
 // Import the styles
-import "../styles.css";
-
+import "../wallet-styles.css";
 
 function WalletPage() {
   const [walletAddress, setWalletAddress] = useState(null);
@@ -50,21 +49,21 @@ function WalletPage() {
   };
 
   return (
-    <div>
-      <h2>Connect to Wallet</h2>
-      <div>
-        <img
-          src={metamaskLogo}
-          alt="Metamask"
-          style={{ width: "300px", cursor: "pointer", margin: "10px" }}
-          onClick={connectMetamask}
-        />
-        <img
-          src={phantomLogo}
-          alt="Phantom"
-          style={{ width: "300px", cursor: "pointer", margin: "10px" }}
-          onClick={connectPhantom}
-        />
+    <div className="wallet-container">
+      <h1 className="wallet-header">Connect Your Wallet</h1>
+      <div className="wallet-options">
+        <div className="wallet-option" onClick={connectMetamask}>
+          <img src={metamaskLogo} alt="Metamask" className="wallet-logo" />
+          <h2 className="wallet-name">MetaMask</h2>
+          <p className="wallet-description">Connect with your Ethereum wallet</p>
+          <button className="wallet-connect-btn">Connect</button>
+        </div>
+        <div className="wallet-option" onClick={connectPhantom}>
+          <img src={phantomLogo} alt="Phantom" className="wallet-logo" />
+          <h2 className="wallet-name">Phantom</h2>
+          <p className="wallet-description">Connect with your Solana wallet</p>
+          <button className="wallet-connect-btn">Connect</button>
+        </div>
       </div>
     </div>
   );
