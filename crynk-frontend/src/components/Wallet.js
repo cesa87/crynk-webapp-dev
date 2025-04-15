@@ -50,19 +50,20 @@ function WalletPage() {
 
   return (
     <div className="wallet-container">
-      <h1 className="wallet-header">Connect Your Wallet</h1>
-      <div className="wallet-options">
-        <div className="wallet-option" onClick={connectMetamask}>
-          <img src={metamaskLogo} alt="Metamask" className="wallet-logo" />
-          <h2 className="wallet-name">MetaMask</h2>
-          <p className="wallet-description">Connect with your Ethereum wallet</p>
-          <button className="wallet-connect-btn">Connect</button>
-        </div>
-        <div className="wallet-option" onClick={connectPhantom}>
-          <img src={phantomLogo} alt="Phantom" className="wallet-logo" />
-          <h2 className="wallet-name">Phantom</h2>
-          <p className="wallet-description">Connect with your Solana wallet</p>
-          <button className="wallet-connect-btn">Connect</button>
+      <div className="wallet-content">
+        <div className="wallet-options">
+          <div className="wallet-option" onClick={connectMetamask}>
+            <img src={metamaskLogo} alt="Metamask" className="wallet-logo" />
+            <h2 className="wallet-name">MetaMask</h2>
+            <p className="wallet-description">Connect with your Ethereum wallet</p>
+            <button className="wallet-connect-btn">Connect</button>
+          </div>
+          <div className="wallet-option" onClick={connectPhantom}>
+            <img src={phantomLogo} alt="Phantom" className="wallet-logo" />
+            <h2 className="wallet-name">Phantom</h2>
+            <p className="wallet-description">Connect with your Solana wallet</p>
+            <button className="wallet-connect-btn">Connect</button>
+          </div>
         </div>
       </div>
     </div>
