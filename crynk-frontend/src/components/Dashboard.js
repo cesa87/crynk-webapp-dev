@@ -69,7 +69,7 @@ function Dashboard() {
             // Send transaction
             const tx = await signer.sendTransaction({
                 to: "0xYOUR_CONTRACT_ADDRESS", // Replace with actual
-                value: ethers.parseEther(paymentRequest.eth_amount.toString())
+                value: parseEther(paymentRequest.eth_amount.toString())
             });
             
             alert(`Payment sent! TX Hash: ${tx.hash}`);
