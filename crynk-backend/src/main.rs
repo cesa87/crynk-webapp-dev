@@ -478,7 +478,6 @@ async fn main() -> std::io::Result<()> {
                 Cors::permissive()
                     .allowed_origin("http://localhost:3000")
 		    .allowed_origin("http://13.48.24.11")
-		    .allowed_origin("http://51.21.249.38")
                     .allowed_methods(vec!["GET", "POST", "OPTIONS"]) // Include OPTIONS for preflight
                     .allowed_headers(vec!["Content-Type"])
                     .max_age(3600) // Cache preflight for 1 hour
