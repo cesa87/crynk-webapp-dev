@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BrowserProvider, formatEther } from "ethers";
+import { BrowserProvider, formatEther, parseEther } from "ethers";
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 import metamaskLogo from "../Metamask-logo.png";
 import phantomLogo from "../Phantom-logo.png";
